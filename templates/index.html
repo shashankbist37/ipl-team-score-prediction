@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>First Innings Score Predictor</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='ipl-favicon.ico') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </head>
+    <style>
+
+        body  {
+          background-image: url("../static/ipl.png");
+          background-color: #cccccc;
+           /* Full height */
+          height: 100%; 
+
+            /* Center and scale the image nicely */
+           
+            background-position: center;
+           
+           background-repeat: no-repeat;
+           
+           background-size: cover;
+           
+           
+        }
+
+        .footer{
+            position: fixed;
+            padding: 10px 10px 0px 10px;
+            bottom: 0;
+            width: 100%;
+            /* Height of the footer*/ 
+            height: 40px;
+            background: #cccccc;        }
+            
+        .div2{
+         margin-left: 25%;
+         margin-top: 5%;
+         width: 50%;
+         padding: 10px;
+        }    
+
+        .form-input{
+            background-color: #3cb8bc;
+            color: white;
+
+        } 
+        ::placeholder {
+            color: rgb(255, 255, 255);
+            opacity: 1; /* Firefox */
+}
+        .container-heading{
+            color: #cccccc;
+            font-weight: 300;
+            font-size: 50;
+        }
+        .prediction{
+            
+	background-color:#0c0c0c;
+	border-radius: 5px;
+	width: 20%;
+    margin-left: 40%;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:7px 30px;
+	margin-top: 10px;
+	text-decoration:none;
+	transition: 0.5s ease-out;
+
+
+
+
+
+}
+        </style>
+
+       
+
+    <body>
+        
+
+        <!-- Website Title -->
+    	<div class="container">
+            <h2 class='container-heading'><span class='heading_first color : #cccccc'>IPL score Prediction </span></h2>
+            
+    	</div>
+
+       
+
+            <!-- Prediction Form -->
+            <div class='div2'>
+                <form action="{{ url_for('predict') }}" method="POST">
+                    <!-- Batting Team Dropdown -->
+                    <select class="form-input align-center" name="batting-team">
+                        <option value="none">Select a Batting team</option>
+                        <option value="Mumbai Indians">Mumbai Indians</option>
+                        <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                        <option value="Chennai Super Kings">Chennai Super Kings</option>
+                        <option value="Rajasthan Royals">Rajasthan Royals</option>
+                        <option value="Kings XI Punjab">Kings XI Punjab</option>
+                        <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                        <option value="Delhi Daredevils">Delhi Daredevils</option>
+                        <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    </select><br>
+
+                
+
+
+                    <!-- Bowling Team Dropdown -->
+                    <select class="form-input align-center" name="bowling-team">
+                        <option value="none">Select a Bowling team</option>
+                        <option value="Mumbai Indians">Mumbai Indians</option>
+                        <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                        <option value="Chennai Super Kings">Chennai Super Kings</option>
+                        <option value="Rajasthan Royals">Rajasthan Royals</option>
+                        <option value="Kings XI Punjab">Kings XI Punjab</option>
+                        <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                        <option value="Delhi Daredevils">Delhi Daredevils</option>
+                        <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    </select><br>
+                    <input class="form-input" type="text" name="overs" placeholder="Overs "><br>
+                    <input class="form-input" type="text" name="runs" placeholder="Runs "><br>
+                    <input class="form-input" type="text" name="wickets" placeholder="Wickets "><br>
+                    <input class="form-input" type="text" name="runs_in_prev_5" placeholder="Runs scored in previous 5 Overs "><br>
+                    <input class="form-input" type="text" name="wickets_in_prev_5" placeholder="Wickets taken in previous 5 "><br>
+
+			<input type="submit" class="myButton" value="Predict Score">
+        	</form>
+
+            
+
+            </div>
+
+            <div class="prediction">
+                {{prediction_text}}
+            </div>
+
+            
+        </div>
+
+        <!-- Footer -->
+       <div class='footer '>
+           
+           <p class='footer-description '>Made by shashank bist.</p>
+       </div>
+
+    </body>
+</html>
